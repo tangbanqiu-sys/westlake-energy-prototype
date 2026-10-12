@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>房间更换｜西湖大学能源管理平台</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+<link rel="stylesheet" href="prototype-flow.css">
+<link rel="stylesheet" href="westlake-select.css">
+</head>
+<body><main class="app">
+<header class="hero"><div class="status"><span>9:41</span><span><i class="ri-wifi-fill"></i> <i class="ri-battery-fill"></i></span></div><h1>房间更换</h1><p>校园能源服务</p></header>
+<div class="content"><section class="view" data-view="select"><div class="card"><h2>选择新房间</h2><div class="field"><label for="campus">校区</label><span class="wl-select" data-component="Select"><select class="wl-select__control" id="campus"><option>云栖校区</option></select><i class="wl-select__icon ri-arrow-down-s-line" aria-hidden="true"></i></span></div><div class="field"><label for="zone">区域</label><span class="wl-select" data-component="Select"><select class="wl-select__control" id="zone"><option>A区</option></select><i class="wl-select__icon ri-arrow-down-s-line" aria-hidden="true"></i></span></div><div class="field"><label for="building">楼栋与楼层</label><span class="wl-select" data-component="Select"><select class="wl-select__control" id="building"><option>A栋 · 2F</option></select><i class="wl-select__icon ri-arrow-down-s-line" aria-hidden="true"></i></span></div><div class="field"><label for="room">房间</label><span class="wl-select" data-component="Select"><select class="wl-select__control" id="room"><option value="201">201</option><option value="202">202</option><option value="203">203</option></select><i class="wl-select__icon ri-arrow-down-s-line" aria-hidden="true"></i></span></div></div><button class="primary" id="verifyBinding">验证并绑定</button></section></div>
+<nav class="tabbar"><button class="nav" id="home"><i class="ri-home-5-line"></i>首页</button><button class="nav" id="recharge"><i class="ri-currency-line"></i>充值</button><button class="nav active" id="mine"><i class="ri-user-3-fill"></i>我的</button></nav>
+</main><script>document.querySelector('#verifyBinding').onclick=()=>{const room=document.querySelector('#room').value;location.href='room-verify.html?room='+encodeURIComponent(room)};document.querySelector('#home').onclick=()=>location.href='index.html';document.querySelector('#recharge').onclick=()=>location.href='recharge.html';document.querySelector('#mine').onclick=()=>location.href='my.html';</script></body>
+</html>

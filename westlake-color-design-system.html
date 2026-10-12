@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>预充值设计规范 · 颜色系统</title>
+  <style>
+    :root{
+      --blue-50:#EEF5FF;--blue-100:#D9E7FF;--blue-200:#B8D1FF;--blue-300:#88B3FF;--blue-400:#4E8BFF;--blue-500:#176BFF;--blue-600:#0753DC;--blue-700:#0B43B1;--blue-800:#10398B;--blue-900:#123271;--blue-950:#0A1E44;
+      --teal-50:#E9FFF9;--teal-100:#C8FFF1;--teal-200:#91FBE2;--teal-300:#4DEDCB;--teal-400:#16DDBA;--teal-500:#00D1B2;--teal-600:#00A88F;--teal-700:#078473;--teal-800:#0B695D;--teal-900:#0D554D;--teal-950:#04312D;
+      --orange-50:#FFF8EB;--orange-100:#FFEDC6;--orange-200:#FFDA88;--orange-300:#FFC14A;--orange-400:#FFA91F;--orange-500:#F79400;--orange-600:#DB7000;--orange-700:#B64D04;--orange-800:#933B0A;--orange-900:#79320D;--orange-950:#451802;
+      --red-50:#FFF1F2;--red-100:#FFE4E6;--red-200:#FECDD3;--red-300:#FDA4AF;--red-400:#FB7185;--red-500:#E5484D;--red-600:#D9363E;--red-700:#B8232C;--red-800:#971D27;--red-900:#7D1D25;--red-950:#450A12;
+      --purple-50:#F7F1FF;--purple-100:#EEDFFF;--purple-200:#DFC2FF;--purple-300:#CA96FF;--purple-400:#B45CFF;--purple-500:#9C28F0;--purple-600:#8014CE;--purple-700:#6911A8;--purple-800:#57128A;--purple-900:#481371;--purple-950:#2E074B;
+      --neutral-0:#FFFFFF;--neutral-50:#F7F9FC;--neutral-100:#EEF2F7;--neutral-200:#DFE5EC;--neutral-300:#C7D0DB;--neutral-400:#94A2B3;--neutral-500:#66758A;--neutral-600:#475569;--neutral-700:#344154;--neutral-800:#1F2A3A;--neutral-900:#111827;--neutral-950:#080D16;
+      --page:#F7F9FC;--surface:#FFFFFF;--text:#111827;--muted:#66758A;--line:#DFE5EC;--radius:18px;--shadow:0 18px 60px rgba(17,24,39,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(circle at 8% 4%,rgba(23,107,255,.11),transparent 30rem),radial-gradient(circle at 94% 28%,rgba(0,209,178,.1),transparent 34rem),linear-gradient(180deg,#F8FAFD 0%,#F3F7FC 48%,#F7F9FC 100%);background-attachment:fixed;color:var(--text);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    .shell{width:min(1440px,calc(100% - 40px));margin:auto}
+    .topbar{height:64px;display:flex;align-items:center;justify-content:space-between;margin:12px 0;padding:0 18px;border:1px solid rgba(255,255,255,.78);border-radius:18px;background:rgba(255,255,255,.62);box-shadow:0 12px 38px rgba(17,24,39,.055);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:-.02em}
+    .mark{position:relative;width:34px;height:34px}
+    .mark:before{content:"";position:absolute;inset:9px 3px 2px;border:6px solid #0055A5;border-top:0;border-radius:0 0 16px 16px}
+    .mark:after{content:"";position:absolute;left:2px;right:2px;top:3px;height:7px;background:#F79400;border-radius:70% 70% 10% 10%}
+    .version{font-size:12px;color:var(--muted);border:1px solid var(--line);background:#fff;padding:5px 10px;border-radius:999px}
+    .hero{position:relative;overflow:hidden;min-height:450px;padding:72px 72px 58px;border:1px solid rgba(255,255,255,.82);border-radius:30px;background:linear-gradient(135deg,rgba(242,247,255,.94) 0%,rgba(228,247,255,.92) 48%,rgba(233,255,249,.9) 100%);box-shadow:0 26px 80px rgba(24,63,116,.12);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .hero:before{content:"";position:absolute;width:520px;height:520px;right:-140px;top:-230px;border-radius:50%;background:radial-gradient(circle,#00D1B2 0%,#176BFF 66%,transparent 67%);opacity:.12}
+    .hero:after{content:"";position:absolute;right:60px;bottom:-96px;width:430px;height:210px;border-radius:50%;background:linear-gradient(110deg,#176BFF,#00D1B2);filter:blur(1px);opacity:.92;transform:rotate(-8deg)}
+    .hero-copy{position:relative;z-index:1;max-width:700px}
+    .kicker{display:flex;align-items:center;gap:10px;color:var(--blue-700);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .kicker:before{content:"";width:24px;height:2px;background:var(--blue-500)}
+    h1{margin:20px 0 20px;font-size:clamp(42px,7vw,76px);line-height:1.08;letter-spacing:-.055em;font-weight:760}
+    .hero p{max-width:620px;margin:0;color:var(--neutral-600);font-size:18px}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+    .meta{padding:8px 12px;border:1px solid rgba(23,107,255,.14);border-radius:10px;background:rgba(255,255,255,.6);font-size:12px;color:var(--neutral-700);backdrop-filter:blur(8px)}
+    .section-nav{position:sticky;top:12px;z-index:5;display:flex;gap:6px;overflow:auto;margin:22px 0 28px;padding:8px;border:1px solid rgba(255,255,255,.88);border-radius:17px;background:rgba(255,255,255,.72);box-shadow:0 14px 42px rgba(17,24,39,.08);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+    .section-nav a{white-space:nowrap;padding:8px 12px;border-radius:9px;color:var(--neutral-600);font-size:13px}
+    .section-nav a:hover{background:var(--blue-50);color:var(--blue-700)}
+    section{scroll-margin-top:100px;position:relative;margin:0 0 20px;padding:56px 48px;border:0;border-radius:0;background:transparent;box-shadow:none}
+    section+section:before{content:"";position:absolute;left:48px;right:48px;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(23,107,255,.16) 16%,rgba(0,209,178,.16) 84%,transparent)}
+    section:is(#goal,#brand,#gradients,#accessibility){margin:18px 0 30px;border:0;border-radius:30px;background:linear-gradient(145deg,rgba(238,245,255,.58),rgba(255,255,255,.48) 50%,rgba(233,255,249,.48));box-shadow:none}
+    section:is(#goal,#brand,#gradients,#accessibility):before{display:none}
+    section:is(#system,#status,#alpha){margin-left:-28px;margin-right:-28px;padding-left:76px;padding-right:76px;background:linear-gradient(90deg,rgba(238,245,255,.42),rgba(255,255,255,.2) 48%,rgba(233,255,249,.36));border-radius:28px}
+    .section-head{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:34px;text-align:left}
+    .section-index{font:600 12px/1.4 ui-monospace,monospace;color:var(--blue-600);letter-spacing:.08em}
+    h2{margin:0;font-size:34px;line-height:1.25;letter-spacing:-.035em}
+    .section-intro{margin:10px 0 0;color:var(--muted);max-width:760px;text-align:left}
+    .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .principle{padding:26px;border:1px solid rgba(223,229,236,.8);border-radius:var(--radius);background:rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(17,24,39,.04);backdrop-filter:blur(12px)}
+    .principle b{display:block;margin-bottom:8px;font-size:16px}.principle span{color:var(--muted);font-size:14px}
+    .families{display:grid;gap:34px}
+    .family-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:12px}
+    .family-head h3{margin:0;font-size:19px}.family-head span{color:var(--muted);font-size:12px;text-align:right}
+    .palette{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:5px}
+    .palette.neutral{grid-template-columns:repeat(12,minmax(0,1fr))}
+    .swatch{min-width:0}.color{height:76px;border-radius:10px;background:var(--c);border:1px solid rgba(17,24,39,.06)}
+    .swatch b,.swatch code{display:block}.swatch b{margin-top:7px;font-size:11px}.swatch code{color:var(--muted);font:10px/1.4 ui-monospace,monospace;overflow-wrap:anywhere}
+    .role-strip{display:grid;grid-template-columns:repeat(5,1fr);overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .role{min-height:180px;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+    .role span{font-size:12px;opacity:.75}.role b{font-size:17px}.role code{font-size:11px;opacity:.9}
+    .alpha-grid,.gradient-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .alpha-card,.gradient-card{padding:18px;border:1px solid rgba(223,229,236,.78);border-radius:var(--radius);background:rgba(255,255,255,.76);box-shadow:0 10px 32px rgba(17,24,39,.045);backdrop-filter:blur(14px)}
+    .alpha-row{display:grid;grid-template-columns:repeat(6,1fr);overflow:hidden;margin-top:14px;border-radius:11px;background:linear-gradient(45deg,#d8dee8 25%,transparent 25%),linear-gradient(-45deg,#d8dee8 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d8dee8 75%),linear-gradient(-45deg,transparent 75%,#d8dee8 75%);background-size:18px 18px;background-position:0 0,0 9px,9px -9px,-9px 0;background-color:#fff}
+    .alpha-chip{height:82px;padding:8px;background:var(--c);display:flex;align-items:end;font-size:10px;color:var(--label)}
+    .gradient-preview{height:170px;border-radius:12px;background:var(--g)}
+    .gradient-card h3{margin:14px 0 2px;font-size:15px}.gradient-card p{margin:0;color:var(--muted);font:11px/1.5 ui-monospace,monospace}
+    .semantic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .semantic-group{padding:24px;border:1px solid rgba(223,229,236,.78);border-radius:var(--radius);background:rgba(255,255,255,.74);box-shadow:0 10px 32px rgba(17,24,39,.04);backdrop-filter:blur(14px)}
+    .semantic-group h3{margin:0 0 16px;font-size:17px}.token-row{display:grid;grid-template-columns:18px 1fr auto;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--neutral-100);font-size:12px}.token-row:first-of-type{border-top:0}.token-dot{width:14px;height:14px;border-radius:4px;background:var(--c);box-shadow:inset 0 0 0 1px rgba(17,24,39,.08)}.token-row code{color:var(--muted)}
+    .type-sample{display:grid;grid-template-columns:220px 1fr;gap:42px;padding:26px 0;border-top:1px solid var(--line)}
+    .type-meta{color:var(--muted);font:12px/1.7 ui-monospace,monospace}.type-display{font-size:42px;line-height:1.15;font-weight:750;letter-spacing:-.04em}.type-heading{font-size:27px;line-height:1.3;font-weight:700}.type-body{font-size:16px;color:var(--neutral-700);max-width:660px}
+    .guides{display:grid;grid-template-columns:1fr 1fr;gap:16px}.guide{padding:26px;border-radius:var(--radius);background:#fff;border:1px solid var(--line)}.guide h3{display:flex;align-items:center;gap:8px;margin:0 0 16px;font-size:17px}.guide ul{margin:0;padding-left:20px;color:var(--neutral-600);font-size:14px}.guide li+li{margin-top:8px}.good h3{color:var(--teal-700)}.bad h3{color:var(--red-600)}
+    .contrast{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px}.contrast-card{min-height:170px;padding:22px;border-radius:16px;display:flex;flex-direction:column;justify-content:space-between}.contrast-card b{font-size:22px}.contrast-card span{font-size:12px;opacity:.75}.contrast-main{background:var(--neutral-900);color:#fff}.contrast-brand{background:var(--blue-600);color:#fff}.contrast-soft{background:var(--blue-50);color:var(--blue-800)}
+    .doc-card{padding:26px;border:1px solid rgba(223,229,236,.78);border-radius:var(--radius);background:rgba(255,255,255,.76);box-shadow:0 10px 30px rgba(17,24,39,.04);backdrop-filter:blur(14px)}
+    .doc-card h3{margin:0 0 10px;font-size:18px}.doc-card p{margin:0;color:var(--neutral-600);font-size:14px}.doc-card p+p{margin-top:10px}
+    .rule-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.rule-grid.three{grid-template-columns:repeat(3,1fr)}
+    .rule-block{position:relative;overflow:hidden;padding:28px 24px 24px;border:1px solid rgba(223,229,236,.78);border-radius:var(--radius);background:rgba(255,255,255,.76);box-shadow:0 10px 32px rgba(17,24,39,.04);backdrop-filter:blur(14px)}
+    .rule-block h3{margin:0 0 12px;font-size:17px}.rule-block p{margin:0 0 12px;color:var(--neutral-600);font-size:14px}.rule-block ul,.numbered{margin:0;padding-left:20px;color:var(--neutral-600);font-size:14px}.rule-block li+li,.numbered li+li{margin-top:7px}
+    .rule-block.brand-blue{--accent:#176BFF;--chip-text:#fff}.rule-block.brand-teal{--accent:#00D1B2;--chip-text:#04312D}.rule-block.brand-orange{--accent:#F79400;--chip-text:#451802}.rule-block.brand-red{--accent:#E5484D;--chip-text:#fff}.rule-block.brand-purple{--accent:#9C28F0;--chip-text:#fff}
+    .rule-block[class*="brand-"]{background:rgba(255,255,255,.76)}.rule-block[class*="brand-"]:before{display:none}.rule-block[class*="brand-"] h3{color:var(--text);padding-left:18px}.brand-chip{position:absolute;top:37px;left:24px;width:10px;height:10px;padding:0;border:0;border-radius:50%;background:var(--accent);color:transparent;font-size:0;line-height:0;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 12%,white)}.brand-chip:before{display:none}
+    .table-wrap{overflow:auto;border:1px solid rgba(223,229,236,.78);border-radius:var(--radius);background:rgba(255,255,255,.74);box-shadow:0 10px 32px rgba(17,24,39,.035);backdrop-filter:blur(14px)}
+    table{width:100%;border-collapse:collapse;min-width:680px;font-size:13px}th,td{padding:14px 16px;border-bottom:1px solid var(--neutral-100);text-align:left;vertical-align:top}th{background:var(--neutral-50);color:var(--neutral-700);font-weight:700}tr:last-child td{border-bottom:0}td code{color:var(--blue-700);font:12px/1.5 ui-monospace,monospace}
+    .callout{padding:20px 22px;border-left:4px solid var(--blue-500);border-radius:0 14px 14px 0;background:var(--blue-50);color:var(--blue-900);font-size:14px}.callout strong{display:block;margin-bottom:5px}
+    .section-stack{display:grid;gap:18px}.minor-title{margin:28px 0 12px;font-size:20px}.swatch-note{margin-top:14px;color:var(--muted);font-size:12px}
+    .semantic-categories{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.semantic-category{padding:20px;border:1px solid var(--line);border-radius:15px;background:#fff}.semantic-category b,.semantic-category code{display:block}.semantic-category b{font-size:14px}.semantic-category code{margin-top:5px;color:var(--blue-700);font:11px/1.5 ui-monospace,monospace}.semantic-category span{display:block;margin-top:8px;color:var(--muted);font-size:12px}
+    .effect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.effect-card{padding:18px;border:1px solid rgba(223,229,236,.76);border-radius:18px;background:rgba(255,255,255,.72);backdrop-filter:blur(14px)}.effect-demo{position:relative;display:grid;place-items:center;height:132px;margin-bottom:16px;border-radius:14px;background:linear-gradient(135deg,#F7F9FC,#EEF5FF);overflow:hidden}.effect-object{width:76px;height:76px;border:1px solid rgba(223,229,236,.82);border-radius:18px;background:#fff}.effect-card h3{margin:0 0 4px;font-size:15px}.effect-card code{display:block;color:var(--blue-700);font:11px/1.5 ui-monospace,monospace}.effect-card p{margin:8px 0 0;color:var(--muted);font-size:12px}.effect-shadow-sm{box-shadow:0 2px 8px rgba(17,24,39,.06)}.effect-shadow-md{box-shadow:0 10px 30px rgba(17,24,39,.10)}.effect-shadow-lg{box-shadow:0 22px 60px rgba(17,24,39,.16)}.effect-glass:before{content:"";position:absolute;inset:-25%;background:linear-gradient(120deg,#176BFF,#00D1B2);opacity:.52}.effect-glass .effect-object{position:relative;background:rgba(255,255,255,.46);border-color:rgba(255,255,255,.62);box-shadow:0 12px 30px rgba(17,24,39,.09);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}.effect-focus{box-shadow:0 0 0 3px rgba(23,107,255,.22)}.effect-overlay{background:linear-gradient(135deg,#B8D1FF,#91FBE2)}.effect-overlay:after{content:"60% Mask";position:absolute;inset:0;display:grid;place-items:center;background:rgba(8,13,22,.60);color:#fff;font:600 12px/1 ui-monospace,monospace;letter-spacing:.04em}
+    .type-token-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.type-token-card{display:flex;min-height:178px;padding:22px;border:1px solid rgba(223,229,236,.78);border-radius:18px;background:rgba(255,255,255,.76);box-shadow:0 10px 32px rgba(17,24,39,.04);flex-direction:column}.type-token-meta{display:flex;justify-content:space-between;gap:16px;margin-bottom:22px;color:var(--muted);font:11px/1.5 ui-monospace,monospace}.type-token-meta code{color:var(--blue-700)}.type-token-sample{margin:0;color:var(--neutral-900);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif}.type-token-note{margin:auto 0 0;padding-top:16px;color:var(--muted);font-size:12px;line-height:1.6}.font-display{font-size:48px;line-height:1.12;font-weight:700;letter-spacing:-.04em}.font-heading{font-size:34px;line-height:1.25;font-weight:700;letter-spacing:-.035em}.font-title{font-size:20px;line-height:1.4;font-weight:600}.font-body{font-size:16px;line-height:1.625;font-weight:400}.font-label{font-size:13px;line-height:1.55;font-weight:500}.font-caption{font-size:12px;line-height:1.5;font-weight:400;color:var(--muted)}.font-foundations{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}.font-foundation{padding:18px;border:1px solid rgba(223,229,236,.76);border-radius:15px;background:rgba(255,255,255,.7)}.font-foundation b,.font-foundation code,.font-foundation span{display:block}.font-foundation b{font-size:14px}.font-foundation code{margin-top:5px;color:var(--blue-700);font:11px/1.5 ui-monospace,monospace}.font-foundation span{margin-top:8px;color:var(--muted);font-size:12px}
+    .process{counter-reset:process;display:grid;gap:10px;width:100%;margin:0;padding:0}.process li{list-style:none;counter-increment:process;display:grid;grid-template-columns:34px 1fr;align-items:start;gap:12px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--neutral-700);font-size:14px}.process li:before{content:counter(process);display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:var(--blue-50);color:var(--blue-700);font-weight:700}
+    footer{margin-top:20px;padding:34px 0 52px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}
+    /* Flat editorial layout: solid surfaces, no glass or backdrop blur. */
+    body{background:linear-gradient(180deg,#F8FAFD 0%,#F3F7FC 52%,#F7F9FC 100%);background-attachment:scroll}
+    .topbar{border-color:var(--neutral-200);background:var(--neutral-0);box-shadow:0 8px 24px rgba(17,24,39,.045);backdrop-filter:none;-webkit-backdrop-filter:none}
+    .hero{border-color:var(--blue-100);background:linear-gradient(135deg,#F2F7FF 0%,#E4F7FF 48%,#E9FFF9 100%);box-shadow:0 20px 56px rgba(24,63,116,.09);backdrop-filter:none;-webkit-backdrop-filter:none}
+    .section-nav{border-color:var(--neutral-200);background:var(--neutral-0);box-shadow:0 8px 26px rgba(17,24,39,.055);backdrop-filter:none;-webkit-backdrop-filter:none}
+    section{padding-top:64px;padding-bottom:64px}
+    section:is(#goal,#brand,#gradients,#accessibility){border:0;background:linear-gradient(145deg,#EEF5FF,#FFFFFF 52%,#E9FFF9);box-shadow:none}
+    section:is(#system,#status,#alpha){background:linear-gradient(90deg,#EEF5FF 0%,#F8FAFD 48%,#E9FFF9 100%)}
+    .section-head{margin-bottom:38px}.section-index{margin-bottom:3px}.section-intro{max-width:820px}
+    .principle,.alpha-card,.gradient-card,.semantic-group,.doc-card,.rule-block,.effect-card,.type-token-card,.font-foundation,.table-wrap{background:var(--neutral-0);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 7px 22px rgba(17,24,39,.035)}
+    .meta{background:var(--neutral-0);backdrop-filter:none}
+    .rule-grid,.guides,.semantic-grid,.effect-grid,.type-token-grid{gap:18px}
+    .section-stack{gap:20px}
+    .effect-glass .effect-object{background:rgba(255,255,255,.88);backdrop-filter:none;-webkit-backdrop-filter:none}
+    /* Sections are editorial content blocks, not outer cards. */
+    main section,
+    main section:is(#goal,#system,#brand,#semantic,#effects,#status,#gradients,#alpha,#accessibility){
+      margin:0 0 20px;
+      padding:64px 48px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+    }
+    main section+section:before{display:block}
+    @media(max-width:900px){.hero{padding:52px 36px}section{padding:36px}section:is(#system,#status,#alpha){margin-left:0;margin-right:0;padding-left:36px;padding-right:36px}.section-head{grid-template-columns:1fr;gap:8px}.principles{grid-template-columns:1fr}.palette,.palette.neutral{grid-template-columns:repeat(6,1fr)}.role-strip{grid-template-columns:repeat(2,1fr)}.alpha-grid,.semantic-grid,.rule-grid{grid-template-columns:1fr}.semantic-categories,.effect-grid{grid-template-columns:repeat(2,1fr)}.type-token-grid{grid-template-columns:1fr}.type-sample{grid-template-columns:1fr;gap:12px}.contrast{grid-template-columns:1fr}.hero:after{opacity:.35}}
+    @media(max-width:560px){.shell{width:min(100% - 24px,1440px)}.topbar{padding:0 12px}.hero{padding:38px 24px;min-height:430px;border-radius:22px}section,section:is(#system,#status,#alpha){padding:34px 24px;margin-left:0;margin-right:0;border-radius:0}section:is(#goal,#brand,#gradients,#accessibility){border-radius:0}section+section:before{left:24px;right:24px}h1{font-size:44px}.section-nav{margin-bottom:22px}.palette,.palette.neutral{grid-template-columns:repeat(3,1fr)}.color{height:68px}.gradient-grid,.guides,.semantic-categories,.effect-grid,.font-foundations{grid-template-columns:1fr}.role-strip{grid-template-columns:1fr}.alpha-chip{height:70px;font-size:9px}.gradient-preview{height:132px}.font-display{font-size:38px}.font-heading{font-size:29px}footer{flex-direction:column}}
+    /* Editorial framework after removing the outer section cards. */
+    main section,
+    main section:is(#goal,#system,#brand,#semantic,#effects,#status,#gradients,#alpha,#accessibility){
+      margin:0;
+      padding:56px 0 64px;
+    }
+    main section+section{margin-top:4px}
+    main section+section:before{left:0;right:0;background:var(--neutral-200)}
+    main .section-head{grid-template-columns:1fr;gap:7px;margin-bottom:30px;align-items:start}
+    main .section-index{padding-top:0;white-space:nowrap}
+    main .section-intro{max-width:760px;margin-top:8px}
+    main section>.section-head~*{margin-left:0}
+    main section>.section-head~.callout{margin-left:0}
+    main .doc-card,main .rule-block,main .semantic-group,main .effect-card,main .type-token-card,main .font-foundation,main .alpha-card,main .gradient-card,main .table-wrap{
+      box-shadow:none;
+    }
+    @media(max-width:900px){
+      main section,main section:is(#goal,#system,#brand,#semantic,#effects,#status,#gradients,#alpha,#accessibility){padding:42px 0 48px}
+      main .section-head{grid-template-columns:1fr;gap:6px;margin-bottom:24px}
+      main .section-index{padding-top:0}
+      main section>.section-head~*,main section>.section-head~.callout{margin-left:0}
+    }
+    /* Editorial specification composition: content stays unchanged. */
+    body{background:#FFFFFF}
+    .hero{
+      min-height:420px;
+      border:0;
+      border-radius:0;
+      background:linear-gradient(120deg,#EEF2FF 0%,#F3F7FF 62%,#ECFAF7 100%);
+      box-shadow:none;
+    }
+    .section-nav{margin-top:18px;margin-bottom:16px;box-shadow:none}
+    main section,
+    main section:is(#goal,#system,#brand,#semantic,#effects,#status,#gradients,#alpha,#accessibility){
+      margin:0;
+      padding:44px 0 54px;
+      border-radius:0;
+      background:transparent;
+    }
+    main .section-head{
+      position:relative;
+      margin-bottom:26px;
+      padding:14px 0 18px;
+      overflow:visible;
+      border-bottom:1px solid var(--neutral-200);
+      border-radius:0;
+      background:transparent;
+    }
+    main .section-head:before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:72px;
+      height:4px;
+      border-radius:4px;
+      background:var(--blue-500);
+    }
+    main .section-head h2{margin-top:0;font-size:30px}
+    main .section-index{margin-top:4px;color:var(--blue-700);font-size:15px;line-height:1.45;font-weight:700;letter-spacing:.09em}
+    main .callout{
+      border-left-color:var(--teal-500);
+      background:var(--teal-50);
+      color:var(--teal-900);
+    }
+    main .section-intro{max-width:900px;margin-top:5px}
+    main section+section{margin-top:0}
+    main section+section:before{display:none}
+    main .doc-card,main .rule-block,main .semantic-group,main .effect-card,main .type-token-card,main .font-foundation,main .alpha-card,main .gradient-card,main .table-wrap{
+      border-radius:10px;
+      box-shadow:none;
+    }
+    main .rule-grid,main .guides,main .semantic-grid,main .effect-grid,main .type-token-grid{gap:12px}
+    main .guide.good{
+      border-color:var(--teal-200);
+      background:linear-gradient(135deg,var(--teal-50),#FFFFFF 72%);
+      box-shadow:inset 4px 0 0 var(--teal-500);
+    }
+    main .guide.bad{
+      border-color:var(--red-200);
+      background:linear-gradient(135deg,var(--red-50),#FFFFFF 72%);
+      box-shadow:inset 4px 0 0 var(--red-500);
+    }
+    @media(max-width:900px){
+      .hero{min-height:390px}
+      main section,main section:is(#goal,#system,#brand,#semantic,#effects,#status,#gradients,#alpha,#accessibility){padding:38px 0 44px}
+      main .section-head{padding:14px 0 16px}
+    }
+    @media(max-width:560px){
+      main section,main section:is(#goal,#system,#brand,#semantic,#effects,#status,#gradients,#alpha,#accessibility){padding:36px 0 44px}
+      main .section-head{padding:14px 0 16px}
+      main .section-head h2{font-size:27px}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><div class="brand"><span class="mark" aria-hidden="true"></span><span>Westlake University</span></div><span class="version">Color System · V1.0</span></header>
+    <main>
+      <header class="hero"><div class="hero-copy"><div class="kicker">Prepaid Design System</div><h1>预充值设计规范<br>颜色使用规范</h1><p>统一预充值产品中的颜色选择、颜色含义和变量使用方式，确保产品在不同页面、状态和终端中保持一致、清晰并具备良好的可访问性。</p><div class="hero-meta"><span class="meta">版本 V1.0</span><span class="meta">Web · 移动端 · 运营界面</span><span class="meta">方案 C「数字活力」</span><span class="meta">79 个基础颜色变量</span><span class="meta">8 个品牌渐变</span></div></div></header>
+      <nav class="section-nav" aria-label="页面目录"><a href="#goal">规范目标</a><a href="#system">颜色体系</a><a href="#brand">品牌颜色</a><a href="#scales">色阶</a><a href="#neutral">中性色</a><a href="#semantic">语义架构</a><a href="#effects">效果令牌</a><a href="#type-tokens">字体令牌</a><a href="#stroke">描边</a><a href="#status">状态</a><a href="#gradients">渐变</a><a href="#alpha">透明度</a><a href="#accessibility">可访问性</a><a href="#delivery">交付</a></nav>
+
+      <section id="goal"><div class="section-head"><div class="section-index">01 / GOAL</div><div><h2>规范目标</h2><p class="section-intro">本规范用于统一预充值产品中的颜色选择、颜色含义和变量使用方式，确保产品在不同页面、状态和终端中保持一致、清晰并具备良好的可访问性。</p></div></div><div class="rule-grid"><article class="doc-card"><h3>基础颜色变量</h3><p>描述颜色本身，例如 <code>blue/500</code>，不承载界面语义。</p></article><article class="doc-card"><h3>语义颜色变量</h3><p>描述颜色用途，例如 <code>text/primary</code>、<code>stroke/default</code>，供界面和组件使用。</p></article></div><div class="callout" style="margin-top:16px"><strong>引用原则</strong>业务界面和组件应引用语义颜色变量，不直接引用 Hex 色值或基础颜色变量。</div></section>
+
+      <section id="system"><div class="section-head"><div class="section-index">02 / SYSTEM</div><div><h2>颜色体系构成</h2><p class="section-intro">方案 C「数字活力」由六个实体色彩家族与两组透明度变量构成。</p></div></div><div class="table-wrap"><table><thead><tr><th>色彩家族</th><th>核心颜色</th><th>主要角色</th></tr></thead><tbody><tr><td>Blue</td><td><code>blue/500 · #176BFF</code></td><td>核心品牌色、主要操作、重点信息</td></tr><tr><td>Teal</td><td><code>teal/500 · #00D1B2</code></td><td>辅助品牌色、正向信息、视觉延伸</td></tr><tr><td>Orange</td><td><code>orange/500 · #F79400</code></td><td>西湖大学 Logo 色、提示与品牌点缀</td></tr><tr><td>Red</td><td><code>red/500 · #E5484D</code></td><td>错误、危险、阻断状态</td></tr><tr><td>Purple</td><td><code>purple/500 · #9C28F0</code></td><td>分类、数据表达和扩展场景</td></tr><tr><td>Neutral</td><td><code>neutral/0–950</code></td><td>文字、背景、描边和界面层级</td></tr><tr><td>Alpha</td><td><code>Black / White 5–80%</code></td><td>遮罩、叠加、悬停和反色层次</td></tr></tbody></table></div><h3 class="minor-title">当前基础色板</h3><div class="families" id="families"></div><p class="swatch-note">基础变量范围与附录 A 一致，共 79 个基础颜色变量。</p></section>
+
+      <section id="brand"><div class="section-head"><div class="section-index">03 / BRAND COLORS</div><div><h2>品牌颜色使用</h2><p class="section-intro">每个色彩家族具有明确职责，不跨越既定语义使用。</p></div></div><div class="section-stack"><article class="rule-block brand-blue"><span class="brand-chip">blue/500 · #176BFF</span><h3>Blue / 品牌蓝</h3><p>Blue 是产品的主色，用于表达品牌识别和主要交互。</p><div class="rule-grid"><div><b>推荐用于</b><ul><li>页面中的主要操作和关键入口。</li><li>当前选中、激活或进行中的状态。</li><li>重点数据、链接和信息提示。</li><li>以蓝色为主导的品牌渐变。</li></ul></div><div><b>避免用于</b><ul><li>错误、危险或不可逆操作。</li><li>大面积正文文字。</li><li>与多个高饱和颜色同时竞争视觉焦点。</li></ul></div></div></article><article class="rule-block brand-teal"><span class="brand-chip">teal/500 · #00D1B2</span><h3>Teal / 辅助青绿</h3><p>Teal 用于扩展品牌色彩，并传达活力、完成和正向感受。</p><ul><li>品牌辅助图形和渐变终点。</li><li>成功、完成或可用状态。</li><li>次级重点信息和数据图形。</li></ul><p style="margin-top:12px">Teal 不应与 Blue 形成同等级的主要操作按钮，除非语义上需要明确区分两类操作。</p></article><article class="rule-block brand-orange"><span class="brand-chip">orange/500 · #F79400</span><h3>Orange / Logo 橙</h3><p>Orange 来源于西湖大学 Logo 色，应保持品牌关联和提示属性。</p><div class="rule-grid"><div><b>推荐用于</b><ul><li>Logo 相关品牌点缀。</li><li>警告、注意、等待或待处理状态。</li><li>小面积图标、标签和数据强调。</li></ul></div><div><b>避免用于</b><ul><li>大面积页面主色。</li><li>与 Red 混用表达同一状态。</li></ul></div></div></article><article class="rule-block brand-red"><span class="brand-chip">red/500 · #E5484D</span><h3>Red / 功能红</h3><p>采用 R1「清晰警示」方案，核心色为 <code>red/500 #E5484D</code>。</p><ul><li>表单校验错误。</li><li>失败、危险和阻断状态。</li><li>删除、撤销后不可恢复等高风险操作。</li><li>需要用户立即注意的异常信息。</li></ul><p style="margin-top:12px">Red 不用于普通品牌装饰、成功状态或常规重点信息。</p></article><article class="rule-block brand-purple"><span class="brand-chip">purple/500 · #9C28F0</span><h3>Purple / 扩展紫色</h3><p>Purple 作为扩展色使用，适用于分类、数据系列、特殊权益或实验性功能。除明确的分类体系外，不应把 Purple 作为主要交互颜色。</p></article></div></section>
+
+      <section id="scales"><div class="section-head"><div class="section-index">04 / COLOR SCALES</div><div><h2>色阶使用规则</h2><p class="section-intro">色阶表示视觉强度，不直接等同于组件状态。具体状态应通过语义变量映射基础色阶。</p></div></div><div class="table-wrap"><table><thead><tr><th>色阶</th><th>推荐用途</th></tr></thead><tbody><tr><td>50–100</td><td>浅色背景、弱提示区域、低强调填充</td></tr><tr><td>200–300</td><td>边框、分割线、悬停背景、浅状态背景</td></tr><tr><td>400–500</td><td>图标、品牌色、默认状态、视觉锚点</td></tr><tr><td>600–700</td><td>强调文字、按下状态、高对比图标</td></tr><tr><td>800–950</td><td>深色背景、强对比文字和高强度状态</td></tr></tbody></table></div></section>
+
+      <section id="neutral"><div class="section-head"><div class="section-index">05 / NEUTRALS</div><div><h2>中性色使用规则</h2><p class="section-intro">Neutral 用于文字、背景、描边和界面层级。</p></div></div><div class="table-wrap"><table><thead><tr><th>变量范围</th><th>推荐用途</th></tr></thead><tbody><tr><td><code>neutral/0–100</code></td><td>页面背景、容器背景、浅色区域</td></tr><tr><td><code>neutral/200–300</code></td><td>普通边框、输入框边框、分割线</td></tr><tr><td><code>neutral/400–500</code></td><td>占位内容、辅助信息、禁用元素</td></tr><tr><td><code>neutral/600–700</code></td><td>次要文字、常规图标、强调描边</td></tr><tr><td><code>neutral/800–950</code></td><td>主要文字、标题、深色背景</td></tr></tbody></table></div><div class="callout" style="margin-top:16px"><strong>深色界面</strong>避免直接使用纯黑作为大面积背景。优先使用带蓝灰倾向的 <code>neutral/900</code> 或 <code>neutral/950</code>。</div></section>
+
+      <section id="semantic"><div class="section-head"><div class="section-index">06 / SEMANTIC ARCHITECTURE</div><div><h2>语义颜色架构</h2><p class="section-intro">语义变量应通过别名引用基础变量，而不是重复填写相同色值。</p></div></div><div class="semantic-categories"><article class="semantic-category"><b>Background</b><code>background/page<br>background/container</code><span>页面和容器表面</span></article><article class="semantic-category"><b>Text</b><code>text/primary<br>text/secondary</code><span>文字层级</span></article><article class="semantic-category"><b>Icon</b><code>icon/default<br>icon/brand</code><span>图标颜色</span></article><article class="semantic-category"><b>Stroke</b><code>stroke/default<br>stroke/focus</code><span>边框、分割线和焦点环</span></article><article class="semantic-category"><b>Status</b><code>status/success<br>status/danger</code><span>系统反馈状态</span></article><article class="semantic-category"><b>Interactive</b><code>interactive/hover<br>interactive/pressed</code><span>交互状态</span></article><article class="semantic-category"><b>Overlay</b><code>overlay/mask<br>overlay/highlight</code><span>遮罩和叠加层</span></article></div></section>
+
+      <section id="effects"><div class="section-head"><div class="section-index">06A / EFFECT TOKENS</div><div><h2>效果令牌</h2><p class="section-intro">效果令牌用于建立悬浮层级、焦点反馈、玻璃表面和遮罩关系。业务界面应引用统一 Token，避免临时创建相近效果。</p></div></div><div class="effect-grid"><article class="effect-card"><div class="effect-demo"><span class="effect-object effect-shadow-sm"></span></div><h3>Shadow / Small</h3><code>effect/shadow/sm</code><p>轻量悬浮、紧凑卡片与控件浮层。</p></article><article class="effect-card"><div class="effect-demo"><span class="effect-object effect-shadow-md"></span></div><h3>Shadow / Medium</h3><code>effect/shadow/md</code><p>标准卡片、下拉面板与悬浮容器。</p></article><article class="effect-card"><div class="effect-demo"><span class="effect-object effect-shadow-lg"></span></div><h3>Shadow / Large</h3><code>effect/shadow/lg</code><p>对话框、抽屉和高层级浮层。</p></article><article class="effect-card"><div class="effect-demo effect-glass"><span class="effect-object"></span></div><h3>Glass / Brand</h3><code>effect/blur/glass · 20px</code><p>页头、导航和品牌背景上的透明表面。</p></article><article class="effect-card"><div class="effect-demo"><span class="effect-object effect-focus"></span></div><h3>Focus / Brand</h3><code>effect/focus/brand · 3px</code><p>键盘焦点与需要明确识别的交互边界。</p></article><article class="effect-card"><div class="effect-demo effect-overlay"></div><h3>Overlay / Mask</h3><code>effect/overlay/mask · 60%</code><p>模态窗口、抽屉与阻断式操作背景。</p></article></div></section>
+
+      <section id="stroke"><div class="section-head"><div class="section-index">07 / STROKE</div><div><h2>描边颜色规范</h2><p class="section-intro">普通结构描边通常使用 1px；焦点环通常使用 2px。</p></div></div><div class="table-wrap"><table><thead><tr><th>变量</th><th>建议基础映射</th><th>用途</th></tr></thead><tbody><tr><td><code>stroke/subtle</code></td><td><code>neutral/200</code></td><td>弱分割线、表格行线</td></tr><tr><td><code>stroke/default</code></td><td><code>neutral/300</code></td><td>普通边框、输入区域</td></tr><tr><td><code>stroke/strong</code></td><td><code>neutral/500</code></td><td>强调边框、高层级分隔</td></tr><tr><td><code>stroke/brand</code></td><td><code>blue/500</code></td><td>品牌和选中描边</td></tr><tr><td><code>stroke/success</code></td><td><code>teal/500</code></td><td>成功状态描边</td></tr><tr><td><code>stroke/warning</code></td><td><code>orange/500</code></td><td>警告状态描边</td></tr><tr><td><code>stroke/danger</code></td><td><code>red/500</code></td><td>错误状态描边</td></tr><tr><td><code>stroke/disabled</code></td><td><code>neutral/200</code></td><td>禁用状态边框</td></tr><tr><td><code>stroke/focus</code></td><td><code>blue/500</code></td><td>键盘焦点环</td></tr><tr><td><code>stroke/inverse</code></td><td><code>white-alpha/40</code></td><td>深色背景上的描边</td></tr></tbody></table></div><div class="callout" style="margin-top:16px"><strong>不可只依赖颜色</strong>错误、选中和焦点还需要图标、文字或形状变化。</div></section>
+
+      <section id="status"><div class="section-head"><div class="section-index">08 / STATUS</div><div><h2>状态颜色规范</h2><p class="section-intro">每种状态建议同时定义背景、文字、图标和描边四类语义变量。</p></div></div><div class="role-strip"><div class="role" style="background:#176BFF"><span>Info / 信息</span><b>信息、品牌、进行中</b><code>Blue</code></div><div class="role" style="background:#00A88F"><span>Success / 成功</span><b>成功、完成、可用</b><code>Teal</code></div><div class="role" style="background:#F79400"><span>Warning / 警告</span><b>注意、等待、需要处理</b><code>Orange</code></div><div class="role" style="background:#E5484D"><span>Danger / 错误</span><b>错误、危险、不可逆操作</b><code>Red</code></div><div class="role" style="background:#9C28F0"><span>Special / 特殊</span><b>特殊分类或扩展状态</b><code>Purple</code></div></div><div class="callout" style="margin-top:16px"><strong>状态色阶</strong>浅色状态背景优先使用 50–100，默认状态色使用 500，文字和高对比元素使用 600–700。</div></section>
+
+      <section id="gradients"><div class="section-head"><div class="section-index">09 / BRAND GRADIENTS</div><div><h2>品牌渐变规范</h2><p class="section-intro">渐变以方案 C 的 <code>blue/500 #176BFF</code> 和 <code>teal/500 #00D1B2</code> 为主要端点。</p></div></div><div class="gradient-grid" id="gradient-grid"></div><div class="rule-block" style="margin-top:18px"><h3>渐变使用要求</h3><ul><li>渐变不能代替成功、警告或错误等状态色。</li><li>正文文字、表格文字和小尺寸图标不使用渐变。</li><li>同一界面避免同时使用多种高强度品牌渐变。</li><li>渐变上的文字和图标必须满足可访问性对比度要求。</li><li>不随意改变已定义渐变的方向、端点颜色和色标位置。</li><li>Figma 中统一使用 <code>Gradient/Brand/*</code> Paint Styles。</li></ul></div></section>
+
+      <section id="alpha"><div class="section-head"><div class="section-index">10 / ALPHA</div><div><h2>透明度颜色规范</h2><p class="section-intro">优先使用既有 <code>black-alpha/*</code> 和 <code>white-alpha/*</code> 变量，不在组件中随意输入新的透明度。</p></div></div><div class="alpha-grid"><article class="alpha-card"><b>Black Alpha</b><div class="alpha-row" id="black-alpha"></div></article><article class="alpha-card"><b>White Alpha</b><div class="alpha-row" id="white-alpha" style="background-color:#1F2A3A"></div></article></div><div class="table-wrap" style="margin-top:18px"><table><thead><tr><th>透明度</th><th>推荐用途</th></tr></thead><tbody><tr><td>5%–10%</td><td>轻微悬停、弱色彩叠加和细微层次</td></tr><tr><td>20%</td><td>弱遮罩、浅色分割或状态叠加</td></tr><tr><td>40%</td><td>禁用内容、中等强度遮罩</td></tr><tr><td>60%</td><td>常规遮罩、深色背景辅助信息</td></tr><tr><td>80%</td><td>高强度遮罩和高对比反色内容</td></tr></tbody></table></div></section>
+
+      <section id="accessibility"><div class="section-head"><div class="section-index">11 / ACCESSIBILITY</div><div><h2>可访问性要求</h2><p class="section-intro">颜色组合需要在真实使用背景与最弱对比位置中验证。</p></div></div><div class="contrast"><div class="contrast-card contrast-main"><span>正文文字</span><b>≥ 4.5:1</b><span>文字与背景</span></div><div class="contrast-card contrast-brand"><span>大号文字</span><b>≥ 3:1</b><span>文字与背景</span></div><div class="contrast-card contrast-soft"><span>重要图标与边界</span><b>≥ 3:1</b><span>与相邻颜色</span></div></div><div class="rule-block" style="margin-top:16px"><ul><li>信息不能仅通过颜色表达，应同时使用文字、图标、形状或位置。</li><li>错误状态必须提供明确的错误说明，不能只显示红色边框。</li><li>渐变背景需要按实际最弱对比位置验证文字可读性。</li><li>禁用状态仍需保持基本可辨识度，不应仅通过极低透明度表达。</li></ul></div></section>
+
+      <section id="prohibited"><div class="section-head"><div class="section-index">12 / PROHIBITED</div><div><h2>禁止事项</h2><p class="section-intro">用明确边界避免临时颜色、含义漂移和视觉优先级冲突。</p></div></div><article class="guide bad"><ul><li>不直接修改品牌核心色的 Hex 值。</li><li>不在业务组件中写死 Hex、RGB 或临时颜色。</li><li>不自行创建未进入基础色板的新颜色。</li><li>不使用多个高饱和颜色争夺同一视觉层级。</li><li>不将 Orange 和 Red 混用于同一种状态。</li><li>不将 Red 用于普通装饰或常规重点信息。</li><li>不在浅色背景上使用低对比度的浅色文字。</li><li>不通过颜色单独表达错误、成功、选中或禁用状态。</li><li>不随意改变标准渐变的方向和色标位置。</li></ul></article></section>
+
+      <section id="examples"><div class="section-head"><div class="section-index">13 / EXAMPLES</div><div><h2>正确与错误示例</h2><p class="section-intro">通过明确示例统一颜色变量在业务界面中的使用方式。</p></div></div><div class="guides"><article class="guide good"><h3>✓ 正确</h3><ul><li>主要操作使用品牌语义色，而不是直接填写 <code>#176BFF</code>。</li><li>错误输入同时显示红色描边、错误图标和错误文字。</li><li>成功提示使用 Teal，并配合“成功”文字或勾选图标。</li><li>深色背景上的边框使用反色透明度变量。</li><li>渐变仅用于品牌区域，正文区域保持稳定的纯色背景。</li></ul></article><article class="guide bad"><h3>× 错误</h3><ul><li>一个页面同时出现蓝、绿、橙、红四种同等级主按钮。</li><li>用 Orange 表示错误，同时在其他页面用 Red 表示同类错误。</li><li>使用 <code>red/500</code> 作为普通促销装饰颜色。</li><li>在渐变背景上直接放置未经对比度验证的白色小字。</li><li>为了接近视觉稿而创建 <code>#186CFE</code> 等临时近似色。</li></ul></article></div></section>
+
+      <section id="delivery"><div class="section-head"><div class="section-index">14 / TOKEN DELIVERY</div><div><h2>Token 命名与交付</h2><p class="section-intro">命名使用小写英文和 <code>/</code> 表示 Figma 层级；CSS 使用小写连字符。语义变量名称描述用途，不包含具体色名。</p></div></div><div class="table-wrap"><table><thead><tr><th>字段</th><th>示例</th></tr></thead><tbody><tr><td>Figma 基础变量</td><td><code>blue/500</code></td></tr><tr><td>CSS 基础变量</td><td><code>var(--color-blue-500)</code></td></tr><tr><td>Figma 语义变量</td><td><code>text/brand</code></td></tr><tr><td>CSS 语义变量</td><td><code>var(--color-text-brand)</code></td></tr><tr><td>色值</td><td><code>#176BFF</code></td></tr><tr><td>类型</td><td>基础变量、语义变量或 Paint Style</td></tr><tr><td>推荐用途</td><td>主要操作、品牌强调</td></tr><tr><td>禁止用途</td><td>错误、危险状态</td></tr><tr><td>模式</td><td>Value、Light 或 Dark</td></tr></tbody></table></div></section>
+
+      <section id="maintenance"><div class="section-head"><div class="section-index">15 / MAINTENANCE</div><div><h2>维护流程</h2><p class="section-intro">Figma、CSS 和设计规范文档应同步更新。</p></div></div><ol class="process"><li>新颜色必须先进入基础色板并说明新增理由。</li><li>业务使用场景通过语义变量映射基础色，不直接引用基础色。</li><li>修改基础色前，应检查所有语义变量和渐变样式的影响范围。</li><li>Figma、CSS 和设计规范文档应同步更新。</li><li>每次修改后需要进行浅色模式、深色模式和关键状态的对比度复查。</li><li>未经评审的实验颜色仅用于探索稿，不进入正式变量集合。</li></ol></section>
+
+      <section id="appendix"><div class="section-head"><div class="section-index">APPENDIX A / CURRENT TOKENS</div><div><h2>当前基础变量范围</h2><p class="section-intro">当前共计 79 个基础颜色变量和 8 个品牌渐变 Paint Styles。</p></div></div><div class="table-wrap"><table><thead><tr><th>家族</th><th>变量范围</th></tr></thead><tbody><tr><td>Blue</td><td><code>50、100、200、300、400、500、600、700、800、900、950</code></td></tr><tr><td>Teal</td><td><code>50、100、200、300、400、500、600、700、800、900、950</code></td></tr><tr><td>Orange</td><td><code>50、100、200、300、400、500、600、700、800、900、950</code></td></tr><tr><td>Neutral</td><td><code>0、50、100、200、300、400、500、600、700、800、900、950</code></td></tr><tr><td>Red</td><td><code>50、100、200、300、400、500、600、700、800、900、950</code></td></tr><tr><td>Purple</td><td><code>50、100、200、300、400、500、600、700、800、900、950</code></td></tr><tr><td>Black Alpha</td><td><code>5、10、20、40、60、80</code></td></tr><tr><td>White Alpha</td><td><code>5、10、20、40、60、80</code></td></tr></tbody></table></div></section>
+      <section id="type-tokens"><div class="section-head"><div class="section-index">TOKEN / TYPOGRAPHY</div><div><h2>字体令牌</h2><p class="section-intro">字体令牌统一字体族、字号、字重和行高，使不同终端中的信息层级保持一致。</p></div></div><div class="font-foundations"><article class="font-foundation"><b>Font Family</b><code>font/family/sans</code><span>Inter、PingFang SC、Microsoft YaHei、system-ui</span></article><article class="font-foundation"><b>Font Weight</b><code>400 · 500 · 600 · 700</code><span>正文、标签、小标题和强调标题。</span></article><article class="font-foundation"><b>Line Height</b><code>1.12 · 1.25 · 1.4 · 1.625</code><span>显示文字、标题、标签和正文。</span></article></div><div class="type-token-grid"><article class="type-token-card"><div class="type-token-meta"><code>font/size/display</code><span>48 / 54 · 700</span></div><p class="type-token-sample font-display">字体样式</p><p class="type-token-note">用于页面主视觉标题、核心数据和需要建立第一视觉层级的内容。</p></article><article class="type-token-card"><div class="type-token-meta"><code>font/size/heading</code><span>34 / 43 · 700</span></div><p class="type-token-sample font-heading">字体样式</p><p class="type-token-note">用于页面标题、章节标题和重要内容区域的主标题。</p></article><article class="type-token-card"><div class="type-token-meta"><code>font/size/title</code><span>20 / 28 · 600</span></div><p class="type-token-sample font-title">字体样式</p><p class="type-token-note">用于卡片标题、模块标题和需要强调的短文本。</p></article><article class="type-token-card"><div class="type-token-meta"><code>font/size/body</code><span>16 / 26 · 400</span></div><p class="type-token-sample font-body">字体样式</p><p class="type-token-note">用于正文、说明文字及需要连续阅读的信息内容。</p></article><article class="type-token-card"><div class="type-token-meta"><code>font/size/label</code><span>13 / 20 · 500</span></div><p class="type-token-sample font-label">字体样式</p><p class="type-token-note">用于按钮、标签、表单名称和简短的状态信息。</p></article><article class="type-token-card"><div class="type-token-meta"><code>font/size/caption</code><span>12 / 18 · 400</span></div><p class="type-token-sample font-caption">字体样式</p><p class="type-token-note">用于时间、来源、辅助提示及次要元数据信息。</p></article></div></section>
+    </main>
+    <footer><span>预充值设计规范 · Color System V1.0</span><span>Westlake University · 方案 C「数字活力」</span></footer>
+  </div>
+  <script>
+    const scales={
+      blue:['#EEF5FF','#D9E7FF','#B8D1FF','#88B3FF','#4E8BFF','#176BFF','#0753DC','#0B43B1','#10398B','#123271','#0A1E44'],
+      teal:['#E9FFF9','#C8FFF1','#91FBE2','#4DEDCB','#16DDBA','#00D1B2','#00A88F','#078473','#0B695D','#0D554D','#04312D'],
+      orange:['#FFF8EB','#FFEDC6','#FFDA88','#FFC14A','#FFA91F','#F79400','#DB7000','#B64D04','#933B0A','#79320D','#451802'],
+      neutral:['#FFFFFF','#F7F9FC','#EEF2F7','#DFE5EC','#C7D0DB','#94A2B3','#66758A','#475569','#344154','#1F2A3A','#111827','#080D16'],
+      red:['#FFF1F2','#FFE4E6','#FECDD3','#FDA4AF','#FB7185','#E5484D','#D9363E','#B8232C','#971D27','#7D1D25','#450A12'],
+      purple:['#F7F1FF','#EEDFFF','#DFC2FF','#CA96FF','#B45CFF','#9C28F0','#8014CE','#6911A8','#57128A','#481371','#2E074B']
+    };
+    const details={blue:['Blue / 品牌蓝','500 为主题蓝锚点'],teal:['Teal / 辅助青绿','500 为辅助色锚点'],orange:['Orange / Logo 橙','500 对应西湖大学 Logo 橙'],neutral:['Neutral / 蓝灰中性色','0–950，适配界面层级'],red:['Red / 功能红','R1 清晰警示 · 500 为错误色锚点'],purple:['Purple / 扩展紫色','用于分类与数据表达']};
+    const steps=[50,100,200,300,400,500,600,700,800,900,950],neutralSteps=[0,50,100,200,300,400,500,600,700,800,900,950];
+    document.getElementById('families').innerHTML=Object.entries(scales).map(([name,colors])=>`<article><div class="family-head"><h3>${details[name][0]}</h3><span>${details[name][1]}</span></div><div class="palette ${name==='neutral'?'neutral':''}">${colors.map((c,i)=>`<div class="swatch"><div class="color" style="--c:${c}"></div><b>${(name==='neutral'?neutralSteps:steps)[i]}</b><code>${c}</code></div>`).join('')}</div></article>`).join('');
+    const alpha=[5,10,20,40,60,80];
+    document.getElementById('black-alpha').innerHTML=alpha.map(a=>`<div class="alpha-chip" style="--c:rgba(0,0,0,${a/100});--label:${a>40?'#fff':'#111827'}">${a}%</div>`).join('');
+    document.getElementById('white-alpha').innerHTML=alpha.map(a=>`<div class="alpha-chip" style="--c:rgba(255,255,255,${a/100});--label:#fff">${a}%</div>`).join('');
+    const gradients=[
+      ['Horizontal / 水平','90° · 0% → 100%','linear-gradient(90deg,#176BFF 0%,#00D1B2 100%)'],
+      ['Vertical / 垂直','180° · 0% → 100%','linear-gradient(180deg,#176BFF 0%,#00D1B2 100%)'],
+      ['Diagonal / 对角','135° · 0% → 100%','linear-gradient(135deg,#176BFF 0%,#00D1B2 100%)'],
+      ['Blue Dominant / 蓝色主导','110° · 0% / 25% / 100%','linear-gradient(110deg,#176BFF 0%,#176BFF 25%,#00D1B2 100%)'],
+      ['Teal Dominant / 青绿主导','110° · 0% / 65% / 100%','linear-gradient(110deg,#176BFF 0%,#00D1B2 65%,#00D1B2 100%)'],
+      ['Center Loop / 中心回环','90° · 0% / 50% / 100%','linear-gradient(90deg,#176BFF 0%,#00D1B2 50%,#176BFF 100%)'],
+      ['Soft / 柔和','135° · Blue 200 → Teal 200','linear-gradient(135deg,#B8D1FF 0%,#91FBE2 100%)'],
+      ['Radial / 径向','30% 30% · 0% / 70% / 100%','radial-gradient(circle at 30% 30%,#00D1B2 0%,#176BFF 70%,#0B43B1 100%)']
+    ];
+    document.getElementById('gradient-grid').innerHTML=gradients.map(([n,s,g])=>`<article class="gradient-card"><div class="gradient-preview" style="--g:${g}"></div><h3>${n}</h3><p>${s}</p></article>`).join('');
+    document.getElementById('effects').after(document.getElementById('type-tokens'));
+    const effectsGrid=document.querySelector('#effects .effect-grid');
+    effectsGrid.insertBefore(effectsGrid.children[4],effectsGrid.children[3]);
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>充值结果｜西湖大学能源管理平台</title>
+  <style>
+    :root{
+      --color-blue-500:#176bff;--color-blue-600:#0a56dc;--color-teal-500:#00d1b2;
+      --text-primary:#09145d;--text-secondary:#67749d;--stroke-subtle:#e3ebf5;
+      --background-page:#f5f9fd;--background-container:rgba(255,255,255,.82);
+      --status-success:#00b985;--radius-xl:16px;--radius-2xl:20px;
+      --spacing-8:8px;--spacing-12:12px;--spacing-16:16px;--spacing-24:24px;
+      --shadow-elevation-md:0 10px 28px rgba(23,107,255,.12);
+      --font:"PingFang SC","Noto Sans SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif
+    }
+    *{box-sizing:border-box}
+    html{background:#e5eff9}
+    body{margin:0;color:var(--text-primary);font-family:var(--font);-webkit-font-smoothing:antialiased}
+    button{font:inherit;cursor:pointer}
+    button:focus-visible{outline:3px solid rgba(23,107,255,.28);outline-offset:3px}
+    .app{position:relative;width:min(100%,430px);min-height:930px;margin:auto;overflow:hidden;background:linear-gradient(180deg,#eaf6ff 0%,#f8fbff 46%,#f3f9ff 100%)}
+    .hero{position:relative;height:185px;overflow:visible;border-radius:0 0 28px 28px;background:linear-gradient(120deg,#77baff 0%,#7fd8ed 58%,#8cebd6 100%)}
+    .back{position:absolute;z-index:5;top:43px;left:18px;display:grid;place-items:center;width:44px;height:44px;border:0;background:transparent;color:#fff;font-size:38px;line-height:1}
+    .page-title{position:relative;z-index:3;margin:0;padding-top:49px;text-align:center;color:#fff;font-size:24px;line-height:34px;font-weight:700;letter-spacing:.08em}
+    .bolt{position:absolute;z-index:1;top:28px;left:82px;width:36px;height:56px;opacity:.62;clip-path:polygon(48% 0,100% 0,68% 39%,100% 39%,24% 100%,43% 52%,0 52%);background:linear-gradient(145deg,#fff,rgba(255,255,255,.2))}
+    .orb{position:absolute;left:23px;bottom:4px;width:42px;height:42px;border:6px solid rgba(255,255,255,.22);border-radius:50%;box-shadow:0 0 13px rgba(255,255,255,.3)}
+    .droplet{position:absolute;top:14px;right:17px;width:22px;height:29px;border:1px solid rgba(255,255,255,.5);border-radius:70% 70% 70% 0;transform:rotate(-45deg);background:linear-gradient(145deg,rgba(255,255,255,.7),rgba(255,255,255,.09));box-shadow:0 2px 14px rgba(255,255,255,.28)}
+    .mascot{position:absolute;z-index:5;top:0;right:-55px;width:235px;height:235px;object-fit:contain;pointer-events:none}
+    .result-card{position:relative;z-index:4;margin:-86px var(--spacing-16) 48px;padding:16px 12px 18px;border:1px solid rgba(255,255,255,.9);border-radius:var(--radius-2xl);background:var(--background-container);box-shadow:var(--shadow-elevation-md);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%)}
+    .success-mark{display:grid;place-items:center;width:138px;height:138px;margin:0 auto 8px;border:1px solid rgba(0,185,133,.1);border-radius:50%;background:rgba(221,250,244,.7)}
+    .success-mark::before{content:"";position:absolute;width:116px;height:116px;border-radius:50%;background:rgba(202,247,235,.8)}
+    .success-center{position:relative;display:grid;place-items:center;width:90px;height:90px;border-radius:50%;background:linear-gradient(140deg,#28d696,#00b684);box-shadow:0 10px 20px rgba(0,185,133,.19)}
+    .success-center svg{width:58px;height:58px;overflow:visible}
+    .result-title{margin:0;text-align:center;font-size:28px;line-height:38px;font-weight:700;letter-spacing:.02em}
+    .result-description{margin:8px -2px 0;text-align:center;color:var(--text-secondary);font-size:15px;line-height:24px}
+    .amount{margin:13px 0 9px;text-align:center;font-size:54px;line-height:66px;font-weight:700;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+    .amount small{font-size:27px;letter-spacing:0;vertical-align:7px}
+    .details{margin:0 0 20px;padding:7px 16px;border:1px solid rgba(255,255,255,.94);border-radius:14px;background:rgba(255,255,255,.68);box-shadow:0 5px 16px rgba(23,107,255,.04)}
+    .detail-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:37px;margin:0;border-bottom:1px solid var(--stroke-subtle);font-size:14px;line-height:22px}
+    .detail-row:last-child{border-bottom:0}
+    .detail-row dt{flex:0 0 auto;color:var(--text-secondary);font-weight:500}
+    .detail-row dd{min-width:0;margin:0;text-align:right;font-weight:500;white-space:nowrap}
+    .timeline{position:relative;list-style:none;margin:0 0 23px;padding:0 14px}
+    .timeline::before{content:"";position:absolute;top:18px;bottom:40px;left:25px;width:2px;background:linear-gradient(#18cf9b,#00b985)}
+    .timeline-item{position:relative;display:flex;align-items:flex-start;gap:20px;min-height:62px}
+    .timeline-item:last-child{min-height:42px}
+    .timeline-icon{position:relative;z-index:1;display:grid;place-items:center;width:24px;height:24px;flex:0 0 24px;border-radius:50%;background:var(--status-success)}
+    .timeline-icon svg{display:block;width:16px;height:16px}
+    .timeline-label{font-size:16px;line-height:24px;font-weight:600}
+    .timeline-time{display:block;margin-top:1px;color:var(--text-secondary);font-size:14px;line-height:20px;font-variant-numeric:tabular-nums}
+    .actions{display:grid;gap:12px;margin:0 2px}
+    .action-button{display:grid;place-items:center;width:100%;height:49px;border:0;border-radius:12px;font-size:18px;line-height:26px;font-weight:700;letter-spacing:.04em}
+    .action-button.primary{color:#fff;background:linear-gradient(105deg,#2798ff,var(--color-blue-500));box-shadow:0 8px 18px rgba(23,107,255,.16)}
+    .action-button.secondary{color:var(--color-blue-600);background:#e9f1ff}
+    .toast{position:fixed;z-index:10;left:50%;bottom:24px;max-width:calc(100% - 40px);padding:10px 15px;border-radius:999px;background:#102342;color:#fff;font-size:13px;white-space:nowrap;opacity:0;transform:translate(-50%,10px);pointer-events:none;transition:.2s}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:380px){.result-card{margin-left:12px;margin-right:12px}.result-description{font-size:13px}.details{padding-left:12px;padding-right:12px}.detail-row{font-size:12px}.mascot{right:-65px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    @media(prefers-reduced-transparency:reduce){.result-card,.details{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <button class="back" type="button" aria-label="返回充值页" id="backButton">‹</button>
+      <span class="bolt" aria-hidden="true"></span><span class="orb" aria-hidden="true"></span><span class="droplet" aria-hidden="true"></span>
+      <h1 class="page-title">充值结果</h1>
+      <img class="mascot" src="output/ip/states/lanbao-recharge-result.png?v=2" alt="庆祝充值成功的蓝宝机器人">
+    </header>
+    <section class="result-card" aria-labelledby="resultTitle">
+      <div class="success-mark" aria-hidden="true"><span class="success-center"><svg viewBox="0 0 64 64" fill="none"><path d="M10 33L25 48L55 16" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <h2 class="result-title" id="resultTitle">充值成功</h2>
+      <p class="result-description">¥100.00 已到账，当前电费余额 ¥105.68。</p>
+      <p class="amount"><small>¥</small>100</p>
+      <dl class="details">
+        <div class="detail-row"><dt>充值账户</dt><dd>A栋 101 · 电费账户</dd></div>
+        <div class="detail-row"><dt>支付方式</dt><dd>微信支付</dd></div>
+        <div class="detail-row"><dt>订单编号</dt><dd>WX202609120018</dd></div>
+        <div class="detail-row"><dt>当前状态</dt><dd>充值成功</dd></div>
+      </dl>
+      <ol class="timeline" aria-label="充值进度">
+        <li class="timeline-item"><span class="timeline-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.5 4.5L19 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><span class="timeline-label">支付成功</span><time class="timeline-time" datetime="2026-09-12T14:32:05">14:32:05</time></div></li>
+        <li class="timeline-item"><span class="timeline-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.5 4.5L19 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><span class="timeline-label">充值到账</span><time class="timeline-time" datetime="2026-09-12T14:32:11">14:32:11</time></div></li>
+      </ol>
+      <div class="actions">
+        <button class="action-button primary" type="button" id="homeButton">返回首页</button>
+        <button class="action-button secondary" type="button" id="recordsButton">查看充值记录</button>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    const toast=document.querySelector('#toast');let toastTimer;
+    function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2000)}
+    document.querySelector('#backButton').addEventListener('click',()=>location.href='recharge.html');
+    document.querySelector('#homeButton').addEventListener('click',()=>location.href='index.html');
+    document.querySelector('#recordsButton').addEventListener('click',()=>location.href='orders.html');
+    const params=new URLSearchParams(location.search),amount=Number(params.get('amount')),type=params.get('type')==='water'?'water':'electric',payment=params.get('payment')==='支付宝支付'?'支付宝支付':'微信支付';
+if(Number.isInteger(amount)&&amount>0&&amount<=1000){document.querySelector('.amount').innerHTML=`<small>¥</small>${amount}`;document.querySelector('.result-description').textContent=`¥${amount.toFixed(2)} 已到账，当前${type==='water'?'水费':'电费'}余额已更新。`}
+    document.querySelector('.details .detail-row:nth-child(1) dd').textContent=`A栋 101 · ${type==='water'?'水费账户':'电费账户'}`;
+    document.querySelector('.details .detail-row:nth-child(2) dd').textContent=payment;
+  </script>
+</body>
+</html>

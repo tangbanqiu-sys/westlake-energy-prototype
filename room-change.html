@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>房间更换｜西湖大学能源管理平台</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+<link rel="stylesheet" href="prototype-flow.css">
+</head>
+<body><main class="app">
+<header class="hero"><div class="status"><span>9:41</span><span><i class="ri-wifi-fill"></i> <i class="ri-battery-fill"></i></span></div><h1>房间更换</h1><p>校园能源服务</p></header>
+<div class="content"><section class="view" data-view="confirm"><div class="card"><h2>解除当前房间</h2><div class="muted">已绑定房间</div><div class="room">云栖校区 · A区 · A栋 · 1F · 101</div><div class="hint warn" style="margin-top:14px">每位用户仅能绑定 1 个房间。更换房间须先解绑，再从校园名单中选择新房间；同一房间可由多人绑定。</div></div><div class="action-stack"><button class="primary" id="continueChange">继续更换房间</button><button class="secondary" id="cancel">暂不更换</button></div></section></div>
+<nav class="tabbar"><button class="nav" id="home"><i class="ri-home-5-line"></i>首页</button><button class="nav" id="recharge"><i class="ri-currency-line"></i>充值</button><button class="nav active" id="mine"><i class="ri-user-3-fill"></i>我的</button></nav>
+</main><script>const legacyView=new URLSearchParams(location.search).get('view');const legacyPages={"confirm":"room-change.html","select":"room-select.html","verify":"room-verify.html","success":"room-success.html","rejected":"room-rejected.html"};if(legacyView&&legacyView!=='confirm'&&legacyPages[legacyView])location.replace(legacyPages[legacyView]);document.querySelector('#continueChange').onclick=()=>location.href='room-select.html';document.querySelector('#cancel').onclick=()=>location.href='my.html?view=room';document.querySelector('#home').onclick=()=>location.href='index.html';document.querySelector('#recharge').onclick=()=>location.href='recharge.html';document.querySelector('#mine').onclick=()=>location.href='my.html';</script></body>
+</html>

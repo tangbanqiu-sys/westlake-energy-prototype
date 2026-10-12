@@ -1,0 +1,11 @@
+<svg width="73" height="90" viewBox="0 0 73 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M36.5 0C31.4 8.5 5 39.1 5 58.2C5 75.8 19.1 90 36.5 90C53.9 90 68 75.8 68 58.2C68 39.1 41.6 8.5 36.5 0Z" fill="url(#waterGradient)"/>
+  <path d="M22 60.5C22 69.1 28.5 75.9 36.6 76.9" stroke="white" stroke-opacity=".22" stroke-width="4" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="waterGradient" x1="-12.17" y1="40.28" x2="96.01" y2="38.75" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9FFF9" stop-opacity=".08"/>
+      <stop offset="0.62" stop-color="#BDF5EA" stop-opacity=".78"/>
+      <stop offset="1" stop-color="#91ECDD" stop-opacity=".9"/>
+    </linearGradient>
+  </defs>
+</svg>
