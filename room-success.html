@@ -5,10 +5,10 @@
 <title>房间更换｜西湖大学能源管理平台</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
 <link rel="stylesheet" href="prototype-flow.css">
-</head>
+<link rel="stylesheet" href="bottom-navigation.css"></head>
 <body><main class="app">
 <header class="hero"><div class="status"><span>9:41</span><span><i class="ri-wifi-fill"></i> <i class="ri-battery-fill"></i></span></div><h1>房间更换</h1><p>校园能源服务</p></header>
 <div class="content"><section class="view" data-view="success"><div class="card center"><i class="ri-checkbox-circle-fill icon" style="color:var(--color-teal-500)"></i><h2>房间更换成功</h2><p class="muted">已绑定云栖校区 A栋 <span id="successRoom">201</span>。</p></div><button class="primary" id="successBack">返回我的</button></section></div>
-<nav class="tabbar"><button class="nav" id="home"><i class="ri-home-5-line"></i>首页</button><button class="nav" id="recharge"><i class="ri-currency-line"></i>充值</button><button class="nav active" id="mine"><i class="ri-user-3-fill"></i>我的</button></nav>
+<nav class="tabbar"><button class="nav" id="home"><span class="nav-icon" aria-hidden="true"><img src="assets/nav/home.svg" alt=""></span><span>首页</span></button><button class="nav" id="recharge"><span class="nav-icon" aria-hidden="true"><img src="assets/nav/recharge.svg" alt=""></span><span>充值</span></button><button class="nav active" id="mine"><span class="nav-icon" aria-hidden="true"><img src="assets/nav/profile-active.svg" alt=""></span><span>我的</span></button></nav>
 </main><script>const room=new URLSearchParams(location.search).get('room');if(room&&/^20[1-3]$/.test(room))document.querySelector('#successRoom').textContent=room;document.querySelector('#successBack').onclick=()=>location.href='my.html?view=room';document.querySelector('#home').onclick=()=>location.href='index.html';document.querySelector('#recharge').onclick=()=>location.href='recharge.html';document.querySelector('#mine').onclick=()=>location.href='my.html';</script></body>
 </html>

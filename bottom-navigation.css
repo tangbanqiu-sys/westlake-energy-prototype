@@ -1,0 +1,70 @@
+/* Shared 430 px bottom navigation, matched to the Figma component. */
+.tabbar {
+  position: fixed !important;
+  z-index: 20 !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 0 !important;
+  transform: translateX(-50%) !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-around !important;
+  width: min(100%, 430px) !important;
+  height: calc(72px + env(safe-area-inset-bottom)) !important;
+  padding: 7px 32px env(safe-area-inset-bottom) !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, .96) !important;
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, .88) !important;
+  box-shadow: 0 -8px 30px rgba(23, 107, 255, .09) !important;
+  backdrop-filter: blur(24px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+}
+
+.tabbar .nav {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex: 0 0 56px !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  width: 56px !important;
+  min-width: 56px !important;
+  height: 56px !important;
+  padding: 1px 6px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #727c9c !important;
+  font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 18px !important;
+}
+
+.tabbar .nav.active {
+  color: #176bff !important;
+}
+
+.tabbar .nav-icon {
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.tabbar .nav-icon img {
+  display: block !important;
+  max-width: 18px !important;
+  max-height: 18px !important;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .tabbar {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
