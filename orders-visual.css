@@ -2,8 +2,8 @@
 html{background:#e5eff9}
 .app{background:linear-gradient(180deg,#eaf6ff 0%,#f8fbff 46%,#f3f9ff 100%)}
 .hero{position:relative;height:185px;overflow:visible;border-radius:0 0 28px 28px;background:linear-gradient(120deg,#77baff 0%,#7fd8ed 58%,#8cebd6 100%)}
-.hero h1{position:relative;z-index:2}.hero p{position:relative;z-index:2}
-.hero .back-detail{position:absolute;z-index:4;top:42px;left:13px;width:44px;height:44px;border:0;background:transparent;color:#fff;font-size:30px}
+.hero h1{z-index:2}.hero p{z-index:2}
+.hero .back-detail{position:absolute;z-index:4;top:50px;left:6px;width:44px;height:44px;border:0;background:transparent;color:#fff;font-size:30px}
 .content{z-index:4;margin-top:-42px}
 .view[data-view="detail"]>.card{border:1px solid rgba(255,255,255,.92);border-radius:20px;background:rgba(255,255,255,.82);box-shadow:var(--result-shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .view[data-view="detail"]>.card.center{padding:17px 12px 18px}
